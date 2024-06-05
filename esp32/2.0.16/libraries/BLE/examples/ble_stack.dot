@@ -1,0 +1,24 @@
+digraph OOB_BLE {
+    rankdir=LR; // Left to Right orientation
+    
+    // Nodes
+    node [shape=box];
+    GAP [label="GAP Layer"];
+    GATT [label="GATT Layer"];
+    SMP [label="SMP Layer"];
+    NFC [label="NFC"]; // Added node for NFC
+    
+    // Edges
+    GAP -> GATT [label="Advertising"];
+    GAP -> SMP [label="Pairing/Bonding"];
+    GATT -> GATT [label="Service Discovery"];
+    GATT -> GATT [label="Characteristic Read/Write"];
+    GATT -> GATT [label="Notifications/Indications"];
+    SMP -> GATT [label="Encryption"];
+    SMP -> NFC [label="Out-of-Band\nCommunication"]; // Added edge for OOB via NFC
+    
+    // Invisible edges for layout purposes
+    edge [style=invis];
+    GAP -> GATT;
+    GATT -> SMP;
+}
